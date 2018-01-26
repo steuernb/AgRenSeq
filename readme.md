@@ -3,7 +3,7 @@
 ## Description
 AgRenSeq is a pipeline to identify candidate resistance (_R_) genes in plants directly from a diversity panel. The diversity panel needs to be sequenced (_R_ gene enrichment sequencing - RenSeq) and phenotyped. Phenotype scores need to be converted to AgRenSeq scores that assign positive values to resistance and negative values to suscetibility. An intermediate phenotype should have an AgRenSeq score close to zero.
 
-For RenSeq you will need a bait library that targets _R_ genes in your plant species. A bait library for _Aegilops tauschii_ can be found _here_ (in preparation). We reccomend [Arbor biosciences](http://www.arborbiosci.com/) for synthesis of baits. They also offer the [enrichment service](http://www.arborbiosci.com/products/myreads-ngs-services-for-targeted-sequencing/). 
+For RenSeq you will need a bait library that targets _R_ genes in your plant species. A bait library for _Aegilops tauschii_ can be found [_here_](https://github.com/steuernb/AgRenSeq/releases/download/v1.0/AeTauschiiBaitLib1.fasta.gz). We reccomend [Arbor biosciences](http://www.arborbiosci.com/) for synthesis of baits. They also offer the [enrichment service](http://www.arborbiosci.com/products/myreads-ngs-services-for-targeted-sequencing/). 
 
 More about this method can be found in the manuscript [http://biorxiv.org/cgi/content/short/248146v1](http://biorxiv.org/cgi/content/short/248146v1)
 
