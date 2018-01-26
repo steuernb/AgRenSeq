@@ -1,6 +1,6 @@
-#AgRenSeq
+# AgRenSeq
 
-##Description
+## Description
 AgRenSeq is a pipeline to identify candidate resistance (_R_) genes in plants directly from a diversity panel. The diversity panel needs to be sequenced (_R_ gene enrichment sequencing - RenSeq) and phenotyped. Phenotype scores need to be converted to AgRenSeq scores that assign positive values to resistance and negative values to suscetibility. An intermediate phenotype should have an AgRenSeq score close to zero.
 
 For RenSeq you will need a bait library that targets _R_ genes in your plant species. A bait library for _Aegilops tauschii_ can be found [here](need to fill the link). We reccomend [Arbor biosciences](http://www.arborbiosci.com/) for synthesis of baits. They also offer the [enrichment service](http://www.arborbiosci.com/products/myreads-ngs-services-for-targeted-sequencing/). 
@@ -10,7 +10,7 @@ More about this method can be found in the manuscript [http://biorxiv.org/cgi/co
 
 
 
-##Pre-requisites
+## Pre-requisites
 ### JRE 1.6
 Make sure you have the Java Runtime Environments 1.6 or higher. Download from [http://java.com](http://java.com)
 
@@ -35,16 +35,16 @@ For visualization, we use R. Donwload from [https://cran.r-project.org/](https:/
 
 ##Pipeline
 
-###1. Preprocess reads (e.g. with Trimmomatic)
+### 1. Preprocess reads (e.g. with Trimmomatic)
 
-###2. Count k-mers from read files for each accession
+### 2. Count k-mers from read files for each accession
 
 ```
 zcat accession1_R?.fastq.gz | jellyfish count -C -m 51 -s 3G -o accession1.jf /dev/fd/0
 jellyfish dump -L 10 -ct accession1.jf > accession1.dump.txt
 ```
 
-###3. Create configuration file for Presence/Absense Matrix
+### 3. Create configuration file for Presence/Absense Matrix
 
 This is a simple tab separated file with the accession names in the first column and the paths to the jellyfish dumps in the second column.
 
@@ -55,7 +55,7 @@ accession2	path/to/accession2.dump.txt
 accessionN	path/to/accessionN.dump.txt
 ```
 
-###4. Create the Presence/Absense Matrix
+### 4. Create the Presence/Absense Matrix
 
 ```
 java -jar AgRenSeq_CreatePresenceMatrix.jar -i accessions.txt -o AgRenSeq_k51_presencematrix.txt -t 3 -n 10
@@ -70,7 +70,7 @@ Parameter | Argument | Description
 -n | integer | Default 10. The minimum kmer count for a k-mer to be considered present.
 -t | integer | Default 3. A k-mer present in less accessions than _this value_ or present in all but _this value_ accessions will not be printed.
 
-###5. Create phenotype file
+### 5. Create phenotype file
 
 This is a tab separated file with accession names in the first colum. The following columns contain AgRenSeq scores. The recoreded score will be the average of all scores in one line. For AgRenSeq, the scores need to be negative for susceptible and positive for resistant. 
 
@@ -80,14 +80,14 @@ Stackman's IT | AgRenSeq score
 --- | ---
 0 | 2; | 1.671- | 1.331 | 11+ | 0.672- | 0.332 | 02+ | -0.333- | -0.673 | -13+ | -1.334 | -2
 
-###6. _De novo_ assembly of resistant accession
+### 6. _De novo_ assembly of resistant accession
 
 Pick an accession where you expect _R_ genes to be (according to your phenotype). Run a de novo assembly on the RenSeq data. 
 
 We have good experience with CLC assembly cell.  
 
 
-###7. Run NLR-Parser on assembly of resistant accession
+### 7. Run NLR-Parser on assembly of resistant accession
 
 This will select the contigs in the _de novo_ assembly that are associated with NLRs and in this way gets rid of off-target contigs.
 
@@ -96,7 +96,7 @@ java -jar NLR-Parser.jar -t <number of threads> -y <path/to/meme/bin/mast> -x <p
 ```
 
 
-###9. Generate association scores of k-mers and project those onto the denovo assembly
+### 9. Generate association scores of k-mers and project those onto the denovo assembly
 
 This process will sum up the AgRenSeq scores from accessions where a k-mer is present and assigns the sum as an association score to a k-mer. In a second step, all association scores from k-mers within a contig from the _de novo_ assembly will be recorded in a tab separated file. For each contig, one line per unique association score is written as well as the number of k-mers that have been assigned with that score. Column 1 is the contig identifier, column 2 is a running number that increases with each contig, column 3 is the association score, column 4 is the number of k-mers in that contig that have been assigned with that score.
 
@@ -106,7 +106,7 @@ java -jar AgRenSeq_RunAssociation.jar -i prenseceMatrix -p phenotype -o AgRenSeq
 ```
 
 
-###10. Plot dot-columns
+### 10. Plot dot-columns
 
 Plot the result from step 9. using R. A simple script for R will look similar to this:
 
