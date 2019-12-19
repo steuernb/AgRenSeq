@@ -5,7 +5,7 @@ AgRenSeq is a pipeline to identify candidate resistance (_R_) genes in plants di
 
 For RenSeq you will need a bait library that targets _R_ genes in your plant species. A bait library for _Aegilops tauschii_ can be found [_here_](https://github.com/steuernb/AgRenSeq/releases/download/v1.0/AeTauschiiBaitLib1.fasta.gz). We reccomend [Arbor biosciences](http://www.arborbiosci.com/) for synthesis of baits. They also offer the [enrichment service](http://www.arborbiosci.com/products/myreads-ngs-services-for-targeted-sequencing/). 
 
-More about this method can be found in the manuscript [http://biorxiv.org/cgi/content/short/248146v1](http://biorxiv.org/cgi/content/short/248146v1). The final paper has been published [here](https://www.nature.com/articles/s41587-018-0007-9) and includes an [improved method](https://github.com/kgaurav1208/AgRenSeq_GLM) to generate association scores. 
+More about this method can be found in the manuscript [http://biorxiv.org/cgi/content/short/248146v1](http://biorxiv.org/cgi/content/short/248146v1). The final paper has been published [*here*](https://www.nature.com/articles/s41587-018-0007-9) and includes an [improved method](https://github.com/kgaurav1208/AgRenSeq_GLM) to generate association scores. 
 
 
 
